@@ -1,5 +1,5 @@
 // API Base URL
-const API_BASE = "https://api.makdulac.com"
+const API_BASE = ""
 
 class DaxDuckDex {
   constructor() {
@@ -888,7 +888,7 @@ class DaxDuckDex {
     try {
       this.dom.archivesLoading.style.display = "block"
 
-      const response = await fetch(`./holiday_logos.json?v=${this.version}`)
+      const response = await fetch(`./holiday_logos-${this.version}.json`)
       if (!response.ok) throw new Error("Error loading archives")
 
       this.allArchives = await response.json()
