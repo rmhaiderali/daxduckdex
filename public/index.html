@@ -1,344 +1,528 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="DaxDuckDex - The ultimate collection of Dax characters from DuckDuckGo. Discover, explore and submit new characters in this comprehensive database.">
-    <meta name="keywords" content="DaxDuckDex, Dax characters, DuckDuckGo, character database, logo collection, mascot, search engine">
-    <meta name="author" content="Mak Dulac">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.makdulac.com/daxduckdex.html">
-    
+    <meta
+      name="description"
+      content="DaxDuckDex - The ultimate collection of Dax characters from DuckDuckGo. Discover, explore and submit new characters in this comprehensive database."
+    />
+    <meta
+      name="keywords"
+      content="DaxDuckDex, Dax characters, DuckDuckGo, character database, logo collection, mascot, search engine"
+    />
+    <meta name="author" content="Mak Dulac" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.makdulac.com/daxduckdex.html" />
+
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="DaxDuckDex - Ultimate Collection of Dax Characters">
-    <meta property="og:description" content="Discover the ultimate collection of Dax characters from DuckDuckGo. Submit new discoveries and explore unique characters.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.makdulac.com/daxduckdex.html">
-    <meta property="og:image" content="https://www.makdulac.com/img/dexBIG.png">
-    <meta property="og:site_name" content="Mak Dulac">
-    
+    <meta
+      property="og:title"
+      content="DaxDuckDex - Ultimate Collection of Dax Characters"
+    />
+    <meta
+      property="og:description"
+      content="Discover the ultimate collection of Dax characters from DuckDuckGo. Submit new discoveries and explore unique characters."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://www.makdulac.com/daxduckdex.html"
+    />
+    <meta
+      property="og:image"
+      content="https://www.makdulac.com/img/dexBIG.png"
+    />
+    <meta property="og:site_name" content="Mak Dulac" />
+
     <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DaxDuckDex - Ultimate Collection of Dax Characters">
-    <meta name="twitter:description" content="Discover the ultimate collection of Dax characters from DuckDuckGo.">
-    <meta name="twitter:image" content="https://www.makdulac.com/img/dexBIG.png">
-    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="DaxDuckDex - Ultimate Collection of Dax Characters"
+    />
+    <meta
+      name="twitter:description"
+      content="Discover the ultimate collection of Dax characters from DuckDuckGo."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.makdulac.com/img/dexBIG.png"
+    />
+
     <!-- Additional SEO -->
-    <meta name="theme-color" content="#667eea">
-    <meta name="msapplication-TileColor" content="#667eea">
-    
-    <title>DaxDuckDex - Ultimate Collection of Dax Characters | Mak Dulac</title>
-    
+    <meta name="theme-color" content="#667eea" />
+    <meta name="msapplication-TileColor" content="#667eea" />
+
+    <title>
+      DaxDuckDex - Ultimate Collection of Dax Characters | Mak Dulac
+    </title>
+
     <!-- JSON-LD Schema Markup -->
     <script type="application/ld+json">
-    {
+      {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "DaxDuckDex",
         "description": "Ultimate collection of Dax characters from DuckDuckGo",
         "url": "https://www.makdulac.com/daxduckdex.html",
         "creator": {
-            "@type": "Person",
-            "name": "Mak Dulac",
-            "url": "https://www.makdulac.com"
+          "@type": "Person",
+          "name": "Mak Dulac",
+          "url": "https://www.makdulac.com"
         },
         "mainEntity": {
-            "@type": "CreativeWork",
-            "@id": "https://www.makdulac.com/daxduckdex.html",
-            "name": "DaxDuckDex Character Database",
-            "description": "Interactive database of Dax characters from DuckDuckGo search engine",
-            "genre": "Character Collection"
+          "@type": "CreativeWork",
+          "@id": "https://www.makdulac.com/daxduckdex.html",
+          "name": "DaxDuckDex Character Database",
+          "description": "Interactive database of Dax characters from DuckDuckGo search engine",
+          "genre": "Character Collection"
         }
-    }
+      }
     </script>
-    
-    <link rel="icon" type="image/x-icon" href="favicondex.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=3.0.6">
-    <link rel="preload" href="./img/dexBIG.png" as="image">
-    <link rel="preload" href="./img/ddgLogo.png" as="image">
-</head>
-<body>
+
+    <link rel="icon" type="image/x-icon" href="favicondex.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css?v=3.0.6" />
+    <link rel="preload" href="./img/dexBIG.png" as="image" />
+    <link rel="preload" href="./img/ddgLogo.png" as="image" />
+  </head>
+  <body>
     <!-- Static content for SEO -->
     <noscript>
-        <div class="seo-content">
-            <h1>DaxDuckDex - Ultimate Collection of Dax Characters</h1>
-            <p>Discover unique Dax characters from DuckDuckGo. This comprehensive database includes character names, discovery dates, and discoverers from the community.</p>
-            <h2>Featured Characters</h2>
-            <ul>
-                <li>Among Us - Discovered by MakDulac</li>
-                <li>Naruto - Discovered by Jean_Mig</li>
-                <li>Neo - Discovered by humid_miel</li>
-            </ul>
-        </div>
+      <div class="seo-content">
+        <h1>DaxDuckDex - Ultimate Collection of Dax Characters</h1>
+        <p>
+          Discover unique Dax characters from DuckDuckGo. This comprehensive
+          database includes character names, discovery dates, and discoverers
+          from the community.
+        </p>
+        <h2>Featured Characters</h2>
+        <ul>
+          <li>Among Us - Discovered by MakDulac</li>
+          <li>Naruto - Discovered by Jean_Mig</li>
+          <li>Neo - Discovered by humid_miel</li>
+        </ul>
+      </div>
     </noscript>
-    
+
     <div class="engagement-bar">
-        <div class="engagement-content">
-            <span class="engagement-text">Help us find more DuckDuckGo Easter Eggs!</span>
-            <a href="https://www.reddit.com/r/duckduckgo/comments/1mme384/daxduckdex_v3_is_now_live" target="_blank" rel="noopener noreferrer" class="engagement-link">
-                <img src="./img/reddit.jpg" alt="Reddit" class="reddit-logo">
-                Join the discussion on Reddit →
-            </a>
-        </div>
+      <div class="engagement-content">
+        <span class="engagement-text"
+          >Help us find more DuckDuckGo Easter Eggs!</span
+        >
+        <a
+          href="https://www.reddit.com/r/duckduckgo/comments/1mme384/daxduckdex_v3_is_now_live"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="engagement-link"
+        >
+          <img src="./img/reddit.jpg" alt="Reddit" class="reddit-logo" />
+          Join the discussion on Reddit →
+        </a>
+      </div>
     </div>
 
     <div class="container">
-        <header>
-            <img src="./img/dexBIG.png" alt="DaxDuckDex" class="dex-big-title" width="400" height="100">
-            <p class="subtitle">Gotta quack 'em all!</p>
-            
-            <nav class="main-nav">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="#dex" class="nav-link active" data-section="dex">
-                            <span class="nav-text">Dex</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#submit" class="nav-link" data-section="submit">
-                            <span class="nav-text">Submit</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#archives" class="nav-link" data-section="archives">
-                            <span class="nav-text">Archives</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link" data-section="about">
-                            <span class="nav-text">About</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+      <header>
+        <img
+          src="./img/dexBIG.png"
+          alt="DaxDuckDex"
+          class="dex-big-title"
+          width="400"
+          height="100"
+        />
+        <p class="subtitle">Gotta quack 'em all!</p>
 
-        <section id="dex-section" class="content-section active">
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search characters, tags, discoverers..." aria-label="Search characters">
-                <button class="clear-search" id="clearSearch" title="Clear search" aria-label="Clear search">❌</button>
-                <span class="search-icon" aria-hidden="true">🔍</span>
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#dex" class="nav-link active" data-section="dex">
+                <span class="nav-text">Dex</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#submit" class="nav-link" data-section="submit">
+                <span class="nav-text">Submit</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#archives" class="nav-link" data-section="archives">
+                <span class="nav-text">Archives</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link" data-section="about">
+                <span class="nav-text">About</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <section id="dex-section" class="content-section active">
+        <div class="search-container">
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search characters, tags, discoverers..."
+            aria-label="Search characters"
+          />
+          <button
+            class="clear-search"
+            id="clearSearch"
+            title="Clear search"
+            aria-label="Clear search"
+          >
+            ❌
+          </button>
+          <span class="search-icon" aria-hidden="true">🔍</span>
+        </div>
+
+        <div class="filters-container">
+          <button
+            id="sortOrderBtn"
+            class="sort-order-btn"
+            title="Toggle sort order"
+            aria-label="Toggle sort order"
+          >
+            <span id="sortOrderText">A → Z</span>
+            <span id="sortOrderIcon" aria-hidden="true">⬆️</span>
+          </button>
+          <button
+            id="viewModeBtn"
+            class="sort-order-btn"
+            title="Toggle view mode"
+            aria-label="Toggle view mode"
+          >
+            <span id="viewModeText">Grid</span>
+            <span id="viewModeIcon" aria-hidden="true">⚏</span>
+          </button>
+          <button
+            id="refreshBtn"
+            class="sort-order-btn refresh-btn hidden"
+            title="Update available - Click to refresh"
+            aria-label="Update available - Click to refresh"
+          >
+            <span id="refreshText">Update!</span>
+            <span id="refreshIcon" aria-hidden="true">🆕</span>
+          </button>
+        </div>
+
+        <div class="loading" id="loading" aria-live="polite">Loading...</div>
+
+        <div class="stats" id="stats" aria-live="polite"></div>
+
+        <div class="gallery" id="gallery" role="list"></div>
+
+        <div class="no-results" id="noResults" aria-live="polite">
+          <h3>No characters found</h3>
+          <p>Try a different search term</p>
+        </div>
+      </section>
+
+      <section id="archives-section" class="content-section">
+        <div class="section-content">
+          <p class="section-description">
+            Discover the historical DuckDuckGo holiday logos collection
+          </p>
+
+          <div class="archives-filters">
+            <div class="year-filter">
+              <label for="yearSelect">Filter by year:</label>
+              <select id="yearSelect" class="year-select">
+                <option value="">All years</option>
+              </select>
+            </div>
+            <div class="archives-search">
+              <input
+                type="text"
+                id="archivesSearchInput"
+                class="archives-search-input"
+                placeholder="Search events..."
+                aria-label="Search events"
+              />
+              <button
+                class="clear-archives-search"
+                id="clearArchivesSearch"
+                title="Clear search"
+                aria-label="Clear search"
+              >
+                ❌
+              </button>
+            </div>
+          </div>
+
+          <div class="archives-stats" id="archivesStats"></div>
+
+          <div class="archives-loading" id="archivesLoading">
+            Loading archives...
+          </div>
+
+          <div class="archives-gallery" id="archivesGallery"></div>
+
+          <div class="archives-no-results" id="archivesNoResults">
+            <h3>No events found</h3>
+            <p>Try a different search term or year</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="about-section" class="content-section">
+        <div class="section-content">
+          <div class="about-card">
+            <h3>About the Project</h3>
+            <p>
+              The DaxDuckDex is a fan-made catalog dedicated to showcasing the
+              many secret costumes and characters of Dax the Duck, DuckDuckGo's
+              beloved mascot. This project was born from a passion for ducks and
+              a fascination with the hidden Easter eggs that appear when
+              searching for specific character names on DuckDuckGo.
+            </p>
+
+            <p>
+              What started as a personal quest to discover all of Dax's
+              disguises has grown into an interactive database that allows users
+              to explore these charming characters. The site also includes
+              historical DuckDuckGo holiday logos, preserving the visual
+              heritage of this privacy-focused search engine.
+            </p>
+
+            <p>
+              Mobile users can now enjoy seeing all of Dax's costumes, which are
+              normally only visible on desktop browsers when searching
+              DuckDuckGo directly.
+            </p>
+
+            <p><em>Gotta quack 'em all!</em> 🦆💫</p>
+          </div>
+
+          <div class="about-card">
+            <h3>Version History</h3>
+
+            <div class="version-item">
+              <h4>Version 3.0 - August 10, 2025</h4>
+              <ul>
+                <li>
+                  Massive database expansion: 224 Dax characters (+77 new
+                  discoveries)
+                </li>
+                <li>New Submit section with Reddit authentication</li>
+                <li>Real-time auto-refresh for new character updates</li>
+                <li>
+                  Your last chance to join the ranks of the first-generation
+                  discoverers!
+                </li>
+              </ul>
+              <a
+                href="https://www.reddit.com/r/duckduckgo/comments/1mme384/daxduckdex_v3_is_now_live"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="version-reddit-link"
+              >
+                <img
+                  src="./img/reddit.jpg"
+                  alt="Reddit"
+                  class="reddit-logo-small"
+                />
+                Related discussion on Reddit →
+              </a>
             </div>
 
-            <div class="filters-container">
-                <button id="sortOrderBtn" class="sort-order-btn" title="Toggle sort order" aria-label="Toggle sort order">
-                    <span id="sortOrderText">A → Z</span>
-                    <span id="sortOrderIcon" aria-hidden="true">⬆️</span>
-                </button>
-                <button id="viewModeBtn" class="sort-order-btn" title="Toggle view mode" aria-label="Toggle view mode">
-                    <span id="viewModeText">Grid</span>
-                    <span id="viewModeIcon" aria-hidden="true">⚏</span>
-                </button>
-                <button id="refreshBtn" class="sort-order-btn refresh-btn hidden" title="Update available - Click to refresh" aria-label="Update available - Click to refresh">
-                    <span id="refreshText">Update!</span>
-                    <span id="refreshIcon" aria-hidden="true">🆕</span>
-                </button>
+            <div class="version-item">
+              <h4>Version 2.0 - July 31, 2025</h4>
+              <ul>
+                <li>Expanded database: 147 Dax characters</li>
+                <li>New Archives section with historical DuckDuckGo logos</li>
+                <li>Year-based filtering for archives</li>
+                <li>New About section</li>
+                <li>Improved navigation and user interface</li>
+              </ul>
+              <a
+                href="https://www.reddit.com/r/duckduckgo/comments/1me1wls/daxduckdex_v2_is_now_live"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="version-reddit-link"
+              >
+                <img
+                  src="./img/reddit.jpg"
+                  alt="Reddit"
+                  class="reddit-logo-small"
+                />
+                Related discussion on Reddit →
+              </a>
             </div>
 
-            <div class="loading" id="loading" aria-live="polite">
-                Loading...
+            <div class="version-item">
+              <h4>Version 1.0 - July 28, 2025</h4>
+              <ul>
+                <li>Initial release with 139 Dax characters</li>
+                <li>Search and filter functionality</li>
+                <li>Grid and list view modes</li>
+                <li>Character discovery credits</li>
+              </ul>
+              <a
+                href="https://www.reddit.com/r/duckduckgo/comments/1mbdr3b/duckduckgos_mascot_has_a_cosplay_multiverse_i"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="version-reddit-link"
+              >
+                <img
+                  src="./img/reddit.jpg"
+                  alt="Reddit"
+                  class="reddit-logo-small"
+                />
+                Related discussion on Reddit →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="submit-section" class="content-section">
+        <div class="section-content">
+          <div class="submit-header">
+            <h2>Submit a New Character</h2>
+            <p class="section-description">
+              Found a new Dax character? Help us grow the DaxDuckDex!
+            </p>
+            <p class="section-description-sub">
+              Join the ranks of legendary first-generation discoverers before
+              the next major update!
+            </p>
+            <div id="userBadge" class="user-badge" style="display: none">
+              Logged as u/username
+            </div>
+          </div>
+
+          <div class="auth-section" id="authSection">
+            <div class="auth-card" id="loginCard">
+              <h3>🔐 Connect with Reddit</h3>
+              <p>
+                To submit a character, please authenticate with your Reddit
+                account:
+              </p>
+              <button id="redditLoginBtn" class="btn btn-primary">
+                <img
+                  src="./img/redditHead.webp"
+                  alt="Reddit"
+                  class="reddit-logo-small"
+                />
+                🔒 Secure login with Reddit
+              </button>
+              <p class="auth-explanation">
+                You'll be redirected to Reddit's secure login page, then brought
+                back here automatically.
+              </p>
             </div>
 
-            <div class="stats" id="stats" aria-live="polite"></div>
-
-            <div class="gallery" id="gallery" role="list"></div>
-
-            <div class="no-results" id="noResults" aria-live="polite">
-                <h3>No characters found</h3>
-                <p>Try a different search term</p>
+            <div class="auth-card hidden" id="userCard">
+              <div class="user-info">
+                <h3>👋 Welcome back!</h3>
+                <div class="user-details">
+                  <strong id="username"></strong>
+                  <span class="user-karma" id="userKarma"></span>
+                </div>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+              </div>
             </div>
-        </section>
+          </div>
 
-        <section id="archives-section" class="content-section">
-            <div class="section-content">
-                <p class="section-description">Discover the historical DuckDuckGo holiday logos collection</p>
-                
-                <div class="archives-filters">
-                    <div class="year-filter">
-                        <label for="yearSelect">Filter by year:</label>
-                        <select id="yearSelect" class="year-select">
-                            <option value="">All years</option>
-                        </select>
-                    </div>
-                    <div class="archives-search">
-                        <input type="text" id="archivesSearchInput" class="archives-search-input" placeholder="Search events..." aria-label="Search events">
-                        <button class="clear-archives-search" id="clearArchivesSearch" title="Clear search" aria-label="Clear search">❌</button>
-                    </div>
+          <div class="submission-form hidden" id="submissionForm">
+            <div class="form-card">
+              <h3>Character Submission Form</h3>
+              <form id="characterForm">
+                <div class="form-group">
+                  <label for="characterName">Character Name *</label>
+                  <input
+                    type="text"
+                    id="characterName"
+                    name="characterName"
+                    required
+                    placeholder="e.g., Superman, Batman, Pikachu"
+                  />
+                  <span class="form-help">The exact character name</span>
                 </div>
 
-                <div class="archives-stats" id="archivesStats"></div>
-                
-                <div class="archives-loading" id="archivesLoading">
-                    Loading archives...
+                <div class="form-group">
+                  <label for="additionalInfo">Additional Information</label>
+                  <textarea
+                    id="additionalInfo"
+                    name="additionalInfo"
+                    placeholder="Any additional notes..."
+                  ></textarea>
+                  <span class="form-help"
+                    >Optional details, trivia, or discovery context</span
+                  >
                 </div>
 
-                <div class="archives-gallery" id="archivesGallery"></div>
-
-                <div class="archives-no-results" id="archivesNoResults">
-                    <h3>No events found</h3>
-                    <p>Try a different search term or year</p>
+                <div class="form-actions">
+                  <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">Submit Character</span>
+                    <span class="btn-loading hidden">Submitting...</span>
+                  </button>
+                  <button type="reset" class="reset-btn">Clear Form</button>
                 </div>
+              </form>
             </div>
-        </section>
+          </div>
 
-        <section id="about-section" class="content-section">
-            <div class="section-content">
-                    <div class="about-card">
-                        <h3>About the Project</h3>
-                        <p>The DaxDuckDex is a fan-made catalog dedicated to showcasing the many secret costumes and characters of Dax the Duck, DuckDuckGo's beloved mascot. This project was born from a passion for ducks and a fascination with the hidden Easter eggs that appear when searching for specific character names on DuckDuckGo.</p>
-                        
-                        <p>What started as a personal quest to discover all of Dax's disguises has grown into an interactive database that allows users to explore these charming characters. The site also includes historical DuckDuckGo holiday logos, preserving the visual heritage of this privacy-focused search engine.</p>
-                        
-                        <p>Mobile users can now enjoy seeing all of Dax's costumes, which are normally only visible on desktop browsers when searching DuckDuckGo directly.</p>
-                        
-                        <p><em>Gotta quack 'em all!</em> 🦆💫</p>
-                    </div>
-
-                    <div class="about-card">
-                        <h3>Version History</h3>
-                        
-                        <div class="version-item">
-                            <h4>Version 3.0 - August 10, 2025</h4>
-                            <ul>
-                                <li>Massive database expansion: 224 Dax characters (+77 new discoveries)</li>
-                                <li>New Submit section with Reddit authentication</li>
-                                <li>Real-time auto-refresh for new character updates</li>
-                                <li>Your last chance to join the ranks of the first-generation discoverers!</li>
-                            </ul>
-                            <a href="https://www.reddit.com/r/duckduckgo/comments/1mme384/daxduckdex_v3_is_now_live" target="_blank" rel="noopener noreferrer" class="version-reddit-link">
-                                <img src="./img/reddit.jpg" alt="Reddit" class="reddit-logo-small">
-                                Related discussion on Reddit →
-                            </a>
-                        </div>
-
-                        <div class="version-item">
-                            <h4>Version 2.0 - July 31, 2025</h4>
-                            <ul>
-                                <li>Expanded database: 147 Dax characters</li>
-                                <li>New Archives section with historical DuckDuckGo logos</li>
-                                <li>Year-based filtering for archives</li>
-                                <li>New About section</li>
-                                <li>Improved navigation and user interface</li>
-                            </ul>
-                            <a href="https://www.reddit.com/r/duckduckgo/comments/1me1wls/daxduckdex_v2_is_now_live" target="_blank" rel="noopener noreferrer" class="version-reddit-link">
-                                <img src="./img/reddit.jpg" alt="Reddit" class="reddit-logo-small">
-                                Related discussion on Reddit →
-                            </a>
-                        </div>
-
-                        <div class="version-item">
-                            <h4>Version 1.0 - July 28, 2025</h4>
-                            <ul>
-                                <li>Initial release with 139 Dax characters</li>
-                                <li>Search and filter functionality</li>
-                                <li>Grid and list view modes</li>
-                                <li>Character discovery credits</li>
-                            </ul>
-                            <a href="https://www.reddit.com/r/duckduckgo/comments/1mbdr3b/duckduckgos_mascot_has_a_cosplay_multiverse_i" target="_blank" rel="noopener noreferrer" class="version-reddit-link">
-                                <img src="./img/reddit.jpg" alt="Reddit" class="reddit-logo-small">
-                                Related discussion on Reddit →
-                            </a>
-                        </div>
-                </div>
+          <div class="submission-status hidden" id="submissionStatus">
+            <div class="status-card success hidden" id="successStatus">
+              <h3>✅ Submission Successful!</h3>
+              <p>
+                Thank you for contributing to the DaxDuckDex! Your submission
+                will be reviewed and added to the database.
+              </p>
+              <button id="submitAnotherBtn" class="submit-another-btn">
+                Submit Another Character
+              </button>
             </div>
-        </section>
 
-        <section id="submit-section" class="content-section">
-            <div class="section-content">
-                <div class="submit-header">
-                    <h2>Submit a New Character</h2>
-                    <p class="section-description">Found a new Dax character? Help us grow the DaxDuckDex!</p>
-                    <p class="section-description-sub">Join the ranks of legendary first-generation discoverers before the next major update!</p>
-                    <div id="userBadge" class="user-badge" style="display: none;">
-                        Logged as u/username
-                    </div>
-                </div>
-
-                <div class="auth-section" id="authSection">
-                    <div class="auth-card" id="loginCard">
-                        <h3>🔐 Connect with Reddit</h3>
-                        <p>To submit a character, please authenticate with your Reddit account:</p>
-                        <button id="redditLoginBtn" class="btn btn-primary">
-                            <img src="./img/redditHead.webp" alt="Reddit" class="reddit-logo-small">
-                            🔒 Secure login with Reddit
-                        </button>
-                        <p class="auth-explanation">
-                            You'll be redirected to Reddit's secure login page, then brought back here automatically.
-                        </p>
-                    </div>
-
-                    <div class="auth-card hidden" id="userCard">
-                        <div class="user-info">
-                            <h3>👋 Welcome back!</h3>
-                            <div class="user-details">
-                                <strong id="username"></strong>
-                                <span class="user-karma" id="userKarma"></span>
-                            </div>
-                            <button id="logoutBtn" class="logout-btn">Logout</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="submission-form hidden" id="submissionForm">
-                    <div class="form-card">
-                        <h3>Character Submission Form</h3>
-                        <form id="characterForm">
-                            <div class="form-group">
-                                <label for="characterName">Character Name *</label>
-                                <input type="text" id="characterName" name="characterName" required 
-                                       placeholder="e.g., Superman, Batman, Pikachu">
-                                <span class="form-help">The exact character name</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="additionalInfo">Additional Information</label>
-                                <textarea id="additionalInfo" name="additionalInfo" 
-                                          placeholder="Any additional notes..."></textarea>
-                                <span class="form-help">Optional details, trivia, or discovery context</span>
-                            </div>
-
-                            <div class="form-actions">
-                                <button type="submit" class="submit-btn" id="submitBtn">
-                                    <span class="btn-text">Submit Character</span>
-                                    <span class="btn-loading hidden">Submitting...</span>
-                                </button>
-                                <button type="reset" class="reset-btn">Clear Form</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="submission-status hidden" id="submissionStatus">
-                    <div class="status-card success hidden" id="successStatus">
-                        <h3>✅ Submission Successful!</h3>
-                        <p>Thank you for contributing to the DaxDuckDex! Your submission will be reviewed and added to the database.</p>
-                        <button id="submitAnotherBtn" class="submit-another-btn">Submit Another Character</button>
-                    </div>
-
-                    <div class="status-card error hidden" id="errorStatus">
-                        <h3>❌ Submission Failed</h3>
-                        <p id="errorMessage">There was an error processing your submission. Please try again.</p>
-                        <button id="retryBtn" class="retry-btn">Try Again</button>
-                    </div>
-                </div>
+            <div class="status-card error hidden" id="errorStatus">
+              <h3>❌ Submission Failed</h3>
+              <p id="errorMessage">
+                There was an error processing your submission. Please try again.
+              </p>
+              <button id="retryBtn" class="retry-btn">Try Again</button>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </div>
 
     <footer class="footer">
-        <div class="footer-content">
-            Created with 💜 by <a href="/" target="_blank" rel="noopener noreferrer" class="footer-creator">Mak Dulac</a> - contact: <a href="https://www.reddit.com/user/Jean_Mak" target="_blank" rel="noopener noreferrer" class="footer-creator">Jean_Mak</a>
-        </div>
+      <div class="footer-content">
+        Created with 💜 by
+        <a
+          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-creator"
+          >Mak Dulac</a
+        >
+        - contact:
+        <a
+          href="https://www.reddit.com/user/Jean_Mak"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-creator"
+          >Jean_Mak</a
+        >
+      </div>
     </footer>
 
     <script src="js/script.js?v=3.0.6" defer></script>
-    
+
     <!-- Analytics Privacy-First -->
     <script src="js/analytics.js" defer></script>
-</body>
+  </body>
 </html>
