@@ -1803,7 +1803,7 @@ header {
   color: white !important;
   border: none !important;
   border-radius: 25px !important;
-  padding: 16px 24px !important;
+  padding: 16px 16px !important;
   font-weight: var(--font-semibold) !important;
   font-size: var(--text-lg) !important;
   cursor: pointer;
