@@ -179,21 +179,20 @@ class DaxDuckDex {
   async loadCharacters() {
     try {
       // Check cache first
-      const cachedData = localStorage.getItem("daxduckdex-cache")
-      const cacheTime = localStorage.getItem("daxduckdex-cache-time")
+      // const cachedData = localStorage.getItem("daxduckdex-cache")
+      // const cacheTime = localStorage.getItem("daxduckdex-cache-time")
 
       // Use cache if less than 1 day old
-      if (cachedData && cacheTime && Date.now() - cacheTime < 86400000) {
-        this.allCharacters = JSON.parse(cachedData)
-        this.dataHash = this.allCharacters.length.toString() // Initialize dataHash for auto-refresh
-        this.filterAndSortCharacters()
-        this.updateDynamicMetaTags()
-        this.dom.loading.style.display = "none"
-        return
-      }
+      // if (cachedData && cacheTime && Date.now() - cacheTime < 86400000) {
+      //   this.allCharacters = JSON.parse(cachedData)
+      //   this.dataHash = this.allCharacters.length.toString() // Initialize dataHash for auto-refresh
+      //   this.filterAndSortCharacters()
+      //   this.updateDynamicMetaTags()
+      //   this.dom.loading.style.display = "none"
+      //   return
+      // }
 
-      const timestamp = Date.now()
-      const response = await fetch(`${API_BASE}/api/characters?v=${timestamp}`)
+      const response = await fetch(`${API_BASE}/api/characters`)
       if (!response.ok) throw new Error("Error loading characters from API")
 
       const apiData = await response.json()
@@ -204,11 +203,11 @@ class DaxDuckDex {
       this.dataHash = apiData.count.toString()
 
       // Update cache
-      localStorage.setItem(
-        "daxduckdex-cache",
-        JSON.stringify(this.allCharacters),
-      )
-      localStorage.setItem("daxduckdex-cache-time", Date.now())
+      // localStorage.setItem(
+      //   "daxduckdex-cache",
+      //   JSON.stringify(this.allCharacters),
+      // )
+      // localStorage.setItem("daxduckdex-cache-time", Date.now())
 
       this.filterAndSortCharacters()
       this.updateDynamicMetaTags()
@@ -284,7 +283,7 @@ class DaxDuckDex {
 
   setFallbackImage(event) {
     event.target.src =
-      "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iNDAiIGZpbGw9IiNmMGYwZjAiLz4KPHN2ZyB4PSIyMCIgeT0iMjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjY2NjIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiPgogIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMTYgN2E0IDQgMCAxIDEtOCAwIDQgNCAwIDAgMSA4IDB6TTEyIDVhMyAzIDAgMCAxIDMgM3YuMDFNMTIgMTRhOCA4IDAgMCAxIDggOHYxSDBWMjJhOCA4IDAgMCAxIDgtOHoiLz4KPC9zdmc+Cjwvc3ZnPgo8L3N2Zz4K"
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48Y2lyY2xlIGN4PSI0MCIgY3k9IjQwIiByPSI0MCIgZmlsbD0iI2YwZjBmMCIvPjxwYXRoIGZpbGw9ImdyYXkiIGQ9Ik0zMi4xMyAyNi4zNHY5LjA4NmgxLjM5N1YyNi4zNHptMTMuODkzIDB2My42MUg0NnEtLjI0LS4zNS0uNzA3LS41NzdhMi4zIDIuMyAwIDAgMC0xLjAzNy0uMjI4cS0xLjMyNSAwLTIuMTIxLjkwNi0uNzkxLjkwNC0uNzkxIDIuNDUxIDAgMS40MzIuNzA3IDIuMjU0LjcxMy44MTQgMS45NDcuODE0LjY0OCAwIDEuMTU2LS4yNTIuNTEtLjI1Ljg0Ni0uNzQyaC4wMjN2Ljg1aDEuMzk3VjI2LjM0em0tMTYuMjc5LjA5YS44Ny44NyAwIDAgMC0uNjQ2LjI1Mi44NS44NSAwIDAgMC0uMjQ2LjYxN3EwIC4zNi4yNDYuNjE3YS44Ny44NyAwIDAgMCAuNjQ2LjI1MnEuNDAyIDAgLjY0OS0uMjQ2YS44NS44NSAwIDAgMCAuMjUyLS42MjMuODQuODQgMCAwIDAtLjI1Mi0uNjE3cS0uMjQ3LS4yNTItLjY0OS0uMjUybS0xMi40MzcuNDAydjguNTk0aDEuNDI3di0zLjU5aDIuOTYxdi0xLjIxN2gtMi45NnYtMi41NjRoMy4yMTJ2LTEuMjIzem0zNi40NDkuNzA3LTEuMzkuMjQ2djEuNTA0aC0xLjAzMnYxLjA5aDEuMDMxdjMuNDUzcTAgLjg1Mi40NDQgMS4yOTUuNDQ5LjQzOCAxLjMyNC40MzcuNDU2IDAgLjgyMi0uMTQ0LjM2Ni0uMTQzLjY0LS40MDZsLS42MjItLjgxYTEgMSAwIDAgMS0uMzE5LjIzM3EtLjE0OS4wNi0uMzA0LjA2MS0uMyAwLS40NS0uMTc0LS4xNDQtLjE3NC0uMTQ0LS41MzlWMzAuMzhoMS41NjR2LTEuMDloLTEuNTY0em0tMjguNjggMS42MDZxLS45MjMgMC0xLjU5Ni4zOTYtLjY3LjM5NS0uOTgyIDEuMDEybDEuMDQzLjUzNXEuMjI4LS40MjcuNTc2LS42NTQuMzQ3LS4yMjkuODU2LS4yMjkuNTE1IDAgLjgzNC4yOS4zMTcuMjgxLjMxOC44NXYuMjk0bC0xLjcwMy4xOTFxLTEuMDEzLjExMy0xLjU1OS42MjktLjU0LjUxLS41MzkgMS4zNTUgMCAuNzg2LjU0IDEuMjcyLjU0NC40ODUgMS4zOTYuNDg0YTIuMzUgMi4zNSAwIDAgMCAxLjA0My0uMjI2cS40NjctLjIzNC43OS0uNjc4aC4wMjZ2Ljc2aDEuMzQ4VjMxLjUycTAtMS4xNTgtLjYxNy0xLjc2NC0uNjEyLS42MTEtMS43NzQtLjYxMW0xMi42NzYgMHEtMS4yNTkgMC0yLjA5OC45MDYtLjgzMi45MDQtLjgzMiAyLjM2MSAwIDEuNTI5LjgxNSAyLjM0NC44MTUuODE0IDIuMTcuODE0Ljg4IDAgMS41MjctLjM2NS42NTQtLjM2NiAxLjA3NC0xLjAzN2wtMS4wNzQtLjU4MnEtLjI1OC40NDQtLjYyOS42NzJhMS42MyAxLjYzIDAgMCAxLS44NTEuMjIycS0uNjc3LS4wMDEtMS4xNDUtLjQ0NS0uNDYyLS40NDktLjQ3OS0xLjMzNmg0LjIzN3YtLjUzOXEwLTEuNDY5LS43MTMtMi4yNDItLjcwOC0uNzc0LTIuMDAyLS43NzNtMjEuNzg5IDBxLTEuNDQ0IDAtMi4zNS45LS45MDUuODkyLS45MTIgMi4zNjEgMCAxLjQ1Ljg1OCAyLjMwNy44NTcuODU3IDIuMzE0Ljg1NyAxLjQ1LjAwMSAyLjMzLS45MTYuODg5LS45MjIuODg5LTIuMzUgMC0xLjM5Ni0uODQtMi4yNzktLjg0LS44OC0yLjI4OS0uODhtLTMwLjQ5OC4xNDR2Ni4xMzdoMS4zOTZ2LTYuMTM3em04LjczNC45MDRxLjYyNCAwIC45ODMuMzk3LjM2LjM5Ni4zNiAxLjExNWgtMi44OTVxLjA4My0uNjQxLjQ5LTEuMDc0LjQwOS0uNDM4IDEuMDYyLS40MzhtNi42ODIuMDg0cS43MDIuMDAxIDEuMTM5LjQ1Ny40NDQuNDQ5LjQ0NSAxLjEydi43cTAgLjgyOS0uNDU3IDEuMzU2LS40NTYuNTI4LTEuMjIzLjUyOC0uNzQ5IDAtMS4xNzQtLjUyOHQtLjQyNS0xLjQ2M3EwLTEuMDQyLjQ1NS0xLjYwNS40NTUtLjU2NSAxLjI0LS41NjVtMTUuMDQ1IDBxLjgyMiAwIDEuMjc3LjU3LjQ2Mi41NjMuNDYxIDEuNDkzIDAgLjk2NS0uNDU1IDEuNTM1LS40NTYuNTYzLTEuMjgzLjU2My0uODM0IDAtMS4zMTgtLjU0NS0uNDg2LS41NTMtLjQ4Ny0xLjUxOCAwLS45MjkuNDkyLTEuNTEuNDkyLS41ODcgMS4zMTMtLjU4OG0tMzMuMzc5IDIuMzJ2LjMzN3EwIC42ODktLjQxNCAxLjE0NC0uNDE0LjQ1LTEuMDg0LjQ1LS40MjYgMC0uNjk1LS4yNGEuODMuODMgMCAwIDEtLjI2Ni0uNjM2cTAtLjM4NC4yMzQtLjYxMS4yMzUtLjIyOC43NDUtLjI4MXptNS44MzggOS4wODd2My42MDloLS4wMjRxLS4yNC0uMzQ4LS43MDktLjU3NmEyLjMgMi4zIDAgMCAwLTEuMDM3LS4yMjdxLTEuMzI1IDAtMi4xMi45MDUtLjc5Mi45MDUtLjc5MiAyLjQ1IDAgMS40MzMuNzA3IDIuMjU1LjcxNC44MTQgMS45NS44MTQuNjQ2IDAgMS4xNTYtLjI1Mi41MS0uMjUxLjg0NS0uNzQyaC4wMjR2Ljg1MWgxLjM5NnYtOS4wODd6TTkgNDIuMTc2djguNTk1aDQuNzZ2LTEuMjM0aC0zLjMzNHYtNy4zNjF6bTI5LjA4MiAwdjguNTk1aDEuNDI2di04LjU5NXpNMTcuNTkgNDQuNDlxLTEuNDQ0IDAtMi4zNS44OTktLjkwNS44OTItLjkxMiAyLjM2MSAwIDEuNDUuODU4IDIuMzA5Ljg1Ny44NTYgMi4zMTQuODU1IDEuNDUgMCAyLjMzLS45MTYuODg4LS45MjMuODg5LTIuMzUgMC0xLjM5Ni0uODQtMi4yNzctLjgzOS0uODgtMi4yOS0uODhtNi4xMTkgMHEtLjkyMiAwLTEuNTk0LjM5NS0uNjcxLjM5NS0uOTg0IDEuMDEzbDEuMDQzLjUzNHEuMjI4LS40MjYuNTc2LS42NTUuMzQ4LS4yMjYuODU3LS4yMjYuNTE1IDAgLjgzMi4yODcuMzE4LjI4Mi4zMTkuODUxdi4yOTNsLTEuNzAzLjE5MnEtMS4wMTIuMTE1LTEuNTU3LjYzLS41NC41MDktLjU0MSAxLjM1NCAwIC43ODYuNTQxIDEuMjcyLjU0Ni40ODQgMS4zOTcuNDg0YTIuMzUgMi4zNSAwIDAgMCAxLjA0My0uMjI3cS40NjctLjIzMy43OS0uNjc3aC4wMjR2Ljc2MUgyNi4xdi0zLjkwOHEwLTEuMTU2LS42MTgtMS43NjEtLjYxLS42MTItMS43NzMtLjYxMm0yMC45NzkgMHEtLjYgMC0xLjEwNC4yNTgtLjQ5Ny4yNTEtLjgwOS43MTNoLS4wMjN2LS44MjhoLTEuMzk3djYuMTM4aDEuMzk3di0zLjQ1OXEwLS43Ni4zNi0xLjIyMi4zNi0uNDY4LjkzNS0uNDY3LjYwNCAwIC45MDQuMzg5dC4yOTkgMS4xNjJ2My41OTdoMS4zOXYtMy40N3EuMDAxLS43MDIuMzc0LTEuMTg4LjM3Ni0uNDkuOTMzLS40OS42MyAwIC45MTIuMzg5LjI4Ny4zOS4yODcgMS4yMjJ2My41MzdoMS4zOTF2LTMuOHEwLTEuMjM0LS41MjctMS44NTgtLjUyOC0uNjIzLTEuNDg3LS42MjMtLjY3NyAwLTEuMjA1LjI3YTIuNCAyLjQgMCAwIDAtLjg5Mi44MDggMS42MiAxLjYyIDAgMCAwLS42NDktLjc3OXEtLjQ1NC0uMy0xLjA5LS4yOTltOS43MjIgMHEtLjkyMyAwLTEuNTk2LjM5NS0uNjcuMzk1LS45ODIgMS4wMTNsMS4wNDMuNTM0cS4yMjgtLjQyNi41NzYtLjY1NS4zNDctLjIyNi44NTYtLjIyNi41MTUgMCAuODM0LjI4Ny4zMTcuMjgyLjMxOC44NTF2LjI5M2wtMS43MDMuMTkycS0xLjAxMy4xMTUtMS41NTkuNjMtLjU0LjUwOS0uNTM5IDEuMzU0IDAgLjc4Ni41NCAxLjI3Mi41NDQuNDg0IDEuMzk2LjQ4NGEyLjM1IDIuMzUgMCAwIDAgMS4wNDMtLjIyN3EuNDY3LS4yMzMuNzktLjY3N2guMDI2di43NjFoMS4zNDh2LTMuOTA4cTAtMS4xNTYtLjYxNy0xLjc2MS0uNjEyLS42MTItMS43NzQtLjYxMm02LjQ4NSAwcS0xLjI1NCAwLTIuMDg2Ljg5My0uODI4Ljg5My0uODI3IDIuNDc0IDAgMS40NDUuNzI1IDIuMjU0LjcyNi44MDMgMS45MjQuODAzLjcxMy4wMDEgMS4xOTMtLjI0NC40ODYtLjI0Ny44Mi0uNzJoLjAyNnYuNzA2cTAgLjk0OC0uNDY5IDEuNDI4LS40NjIuNDc5LTEuMjk1LjQ3OC0uNjIyLjAwMS0xLjA2Ni0uMjM4YTIuNCAyLjQgMCAwIDEtLjc4NS0uNzI2bC0xLjAxNC43NTZxLjQ4LjYyOSAxLjE4OC45NjQuNzA2LjM0MiAxLjY2LjM0MiAxLjQ5MiAwIDIuMzMyLS44NDYuODQ1LS44NDQuODQ1LTIuMzk2di01Ljc4NUg2Mi42N3YuNjQ4aC0uMDI1YTEuOCAxLjggMCAwIDAtLjc0My0uNTg4IDIuNSAyLjUgMCAwIDAtMS4wMDctLjIwM203LjM5IDBxLTEuMjU4IDAtMi4wOTcuOTA1LS44MzQuOTA1LS44MzQgMi4zNiAwIDEuNTMuODE2IDIuMzQ1LjgxNS44MTQgMi4xNy44MTQuODggMCAxLjUyNy0uMzY1LjY1NS0uMzY2IDEuMDc0LTEuMDM3bC0xLjA3NC0uNThhMS44NiAxLjg2IDAgMCAxLS42MjkuNjcgMS42MyAxLjYzIDAgMCAxLS44NTEuMjIyIDEuNiAxLjYgMCAwIDEtMS4xNDUtLjQ0M3EtLjQ2LS40NS0uNDc4LTEuMzM4SDcxdi0uNTRxMC0xLjQ2OC0uNzEzLTIuMjQxLS43MDctLjc3My0yLjAwMi0uNzcybS4wMjQgMS4wNXEuNjIzLS4wMDEuOTg0LjM5NC4zNi4zOTUuMzYgMS4xMTVoLTIuODk3YTEuODcgMS44NyAwIDAgMSAuNDkyLTEuMDcycS40MDgtLjQzOCAxLjA2LS40MzhtLTUwLjc1Ni4wODNxLjgyIDAgMS4yNzcuNTY4LjQ2Mi41NjMuNDYxIDEuNDkzIDAgLjk2NS0uNDU1IDEuNTM1LS40NTYuNTYyLTEuMjgzLjU2Mi0uODM0IDAtMS4zMTktLjU0NS0uNDg0LS41NS0uNDg0LTEuNTE1IDAtLjkzLjQ5LTEuNTEyLjQ5MS0uNTg3IDEuMzEzLS41ODZtMTIuODQ1IDBxLjcwMSAwIDEuMTQuNDU1LjQ0Mi40NS40NDIgMS4xMjF2LjcwMXEuMDAxLjgyNy0uNDU1IDEuMzU0LS40NTQuNTI3LTEuMjIyLjUyNy0uNzUgMC0xLjE3Ni0uNTI3dC0uNDI2LTEuNDYxcS4wMDEtMS4wNDQuNDU3LTEuNjA3LjQ1Ni0uNTY0IDEuMjQtLjU2M20zMC42OTQgMHEuNzAxIDAgMS4xNDYuNDYxLjQ0NC40NjIuNDQ0IDEuMTIxdi43MTNxMCAuODMyLS40NyAxLjM0OC0uNDY2LjUxNS0xLjIxNi41MTUtLjc0OSAwLTEuMTc0LS41MjctLjQyLS41MzMtLjQyLTEuNDYxIDAtMS4wNDQuNDU1LTEuNjA3LjQ1Ni0uNTY0IDEuMjM1LS41NjNtLTM2LjMzNCAyLjMxOHYuMzM2cTAgLjY5LS40MTQgMS4xNDUtLjQxNC40NS0xLjA4NC40NS0uNDI2IDAtLjY5Ni0uMjRhLjgzLjgzIDAgMCAxLS4yNjMtLjYzNnEtLjAwMS0uMzg0LjIzMi0uNjExLjIzNS0uMjI4Ljc0NC0uMjgxem0zMC43MDEgMHYuMzM2cTAgLjY5LS40MTQgMS4xNDUtLjQxNC40NS0xLjA4Ni40NS0uNDI2IDAtLjY5NS0uMjRhLjgzLjgzIDAgMCAxLS4yNjQtLjYzNnEwLS4zODQuMjM0LS42MTEuMjM0LS4yMjguNzQ1LS4yODF6Ii8+PC9zdmc+"
   }
 
   setModalFallbackImage(event) {
@@ -821,19 +820,43 @@ class DaxDuckDex {
         discovererMatches.length === filtered
       ) {
         const discovererName = discovererMatches[0].discoverer
-        this.dom.stats.innerHTML = `
-                    ${filtered} character${filtered !== 1 ? "s" : ""} discovered by ${discovererName} 
-                    <a href="https://www.reddit.com/user/${discovererName}" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       title="View ${discovererName}'s Reddit profile" 
-                       style="display: inline-block; margin-left: 4px; vertical-align: middle;">
-                        <img src="./img/redditLink.webp" 
-                             alt="Open Reddit profile" 
-                             style="width: 18px; height: 18px; opacity: 0.7; transition: opacity 0.3s ease;" 
-                             onmouseover="this.style.opacity='1'" 
-                             onmouseout="this.style.opacity='0.7'">
-                    </a>`
+        const redditDiscoverer = discovererMatches.find(
+          (char) => char.discoverer_provider === "reddit",
+        )
+        const discordDiscoverer = discovererMatches.find(
+          (char) => char.discoverer_provider === "discord",
+        )
+        this.dom.stats.innerHTML = `${filtered} character${filtered !== 1 ? "s" : ""} discovered by ${discovererName}`
+
+        if (redditDiscoverer) {
+          this.dom.stats.innerHTML += `
+            <a href="https://www.reddit.com/user/${redditDiscoverer.discoverer}" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              title="View ${redditDiscoverer.discoverer}'s Reddit profile" 
+              style="display: inline-block; vertical-align: middle;">
+                <img src="./img/redditLink.webp" 
+                    alt="Open Reddit profile" 
+                    style="width: 18px; height: 18px; opacity: 0.7; transition: opacity 0.3s ease;" 
+                    onmouseover="this.style.opacity='1'" 
+                    onmouseout="this.style.opacity='0.7'">
+              </a>`
+        }
+
+        if (discordDiscoverer) {
+          this.dom.stats.innerHTML += `
+            <a href="https://discord.com/users/${discordDiscoverer.discoverer_id}" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              title="View ${discordDiscoverer.discoverer}'s Discord profile" 
+              style="display: inline-block; vertical-align: middle;">
+                <img src="./img/discordLink.webp" 
+                    alt="Open Discord profile" 
+                    style="width: 18px; height: 18px; opacity: 0.7; transition: opacity 0.3s ease;" 
+                    onmouseover="this.style.opacity='1'" 
+                    onmouseout="this.style.opacity='0.7'">
+              </a>`
+        }
       } else {
         this.dom.stats.textContent = `${filtered} of ${total} character${total !== 1 ? "s" : ""}`
       }
@@ -1034,6 +1057,7 @@ class DaxDuckDex {
   }
 
   async checkForUpdates() {
+    return
     try {
       const timestamp = Date.now()
       const response = await fetch(
@@ -1146,22 +1170,22 @@ class RedditSubmissionManager {
   handleAuthReturn() {
     const urlParams = new URLSearchParams(window.location.search)
     const returnTo = urlParams.get("returnTo")
-    const isAuthReturn =
-      urlParams.has("code") ||
-      urlParams.has("state") ||
-      window.location.hash === "#_"
+    // const isAuthReturn =
+    //   urlParams.has("code") ||
+    //   urlParams.has("state") ||
+    //   window.location.hash === "#_"
 
-    if (isAuthReturn) {
-      const cleanUrl = window.location.pathname
-      window.history.replaceState(null, "", cleanUrl)
+    // if (isAuthReturn) {
+    const cleanUrl = window.location.pathname
+    window.history.replaceState(null, "", cleanUrl)
 
-      if (returnTo === "submit") {
-        setTimeout(() => {
-          const submitLink = document.querySelector('a[data-section="submit"]')
-          if (submitLink) submitLink.click()
-        }, 100)
-      }
+    if (returnTo === "submit") {
+      setTimeout(() => {
+        const submitLink = document.querySelector('a[data-section="submit"]')
+        if (submitLink) submitLink.click()
+      }, 100)
     }
+    // }
   }
 
   async checkAuthStatus() {
@@ -1187,9 +1211,7 @@ class RedditSubmissionManager {
 
   async initiateLogin() {
     try {
-      const cleanUrl = `${window.location.origin}${window.location.pathname}?returnTo=submit`
-      const returnUrl = encodeURIComponent(cleanUrl)
-      window.location.href = `${this.apiBaseUrl}/auth/reddit?returnUrl=${returnUrl}`
+      window.location.href = `${this.apiBaseUrl}/auth/discord`
     } catch (error) {
       console.error("Login error:", error)
       this.showError("Failed to initiate login. Please try again.")
@@ -1271,13 +1293,13 @@ class RedditSubmissionManager {
     if (this.dom.submitBtn) this.dom.submitBtn.disabled = false
 
     if (this.dom.username && this.currentUser) {
-      this.dom.username.textContent = `u/${this.currentUser.name || this.currentUser.username}`
+      this.dom.username.textContent = this.currentUser.name
     }
-    if (this.dom.userKarma && this.currentUser) {
-      this.dom.userKarma.textContent = `${this.currentUser.karma || 0} karma`
-    }
+    // if (this.dom.userKarma && this.currentUser) {
+    //   this.dom.userKarma.textContent = `${this.currentUser.karma || 0} karma`
+    // }
     if (this.dom.userBadge && this.currentUser) {
-      this.dom.userBadge.textContent = `Logged as u/${this.currentUser.name || this.currentUser.username}`
+      this.dom.userBadge.textContent = `Logged as ${this.currentUser.name}`
       this.dom.userBadge.style.display = "inline-flex"
     }
   }
@@ -1299,34 +1321,34 @@ class RedditSubmissionManager {
     }
 
     const characterName = this.dom.characterName.value.trim()
-    const additionalInfo = this.dom.additionalInfo.value.trim()
+    // const additionalInfo = this.dom.additionalInfo.value.trim()
 
     if (!characterName) {
       this.showError("Please enter a character name.")
       return
     }
 
-    const existingCharacter = this.checkCharacterExists(characterName)
-    if (existingCharacter) {
-      this.showError(
-        `"${characterName}" already exists in our database! ` +
-          `It was discovered by ${existingCharacter.discoverer || "Unknown"} ` +
-          `${existingCharacter.discovered_date ? `on ${this.formatDate(existingCharacter.discovered_date)}` : ""}.`,
-      )
-      return
-    }
+    // const existingCharacter = this.checkCharacterExists(characterName)
+    // if (existingCharacter) {
+    //   this.showError(
+    //     `"${characterName}" already exists in our database! ` +
+    //       `It was discovered by ${existingCharacter.discoverer || "Unknown"} ` +
+    //       `${existingCharacter.discovered_date ? `on ${this.formatDate(existingCharacter.discovered_date)}` : ""}.`,
+    //   )
+    //   return
+    // }
 
-    this.setSubmitLoading(true)
+    // this.setSubmitLoading(true)
 
-    const ddgExists = await this.checkDuckDuckGoExists(characterName)
-    if (!ddgExists) {
-      this.setSubmitLoading(false)
-      this.showError(
-        `"${characterName}" was not found on DuckDuckGo. ` +
-          `Please check the spelling or try a different variation.`,
-      )
-      return
-    }
+    // const ddgExists = await this.checkDuckDuckGoExists(characterName)
+    // if (!ddgExists) {
+    //   this.setSubmitLoading(false)
+    //   this.showError(
+    //     `"${characterName}" was not found on DuckDuckGo. ` +
+    //       `Please check the spelling or try a different variation.`,
+    //   )
+    //   return
+    // }
 
     try {
       const response = await fetch(`${this.apiBaseUrl}/submit/character`, {
@@ -1337,7 +1359,7 @@ class RedditSubmissionManager {
         },
         body: JSON.stringify({
           characterName,
-          additionalInfo,
+          // additionalInfo,
         }),
       })
 

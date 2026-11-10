@@ -56,9 +56,7 @@
     <meta name="theme-color" content="#667eea" />
     <meta name="msapplication-TileColor" content="#667eea" />
 
-    <title>
-      DaxDuckDex - Ultimate Collection of Dax Characters | Mak Dulac
-    </title>
+    <title>DaxDuckDex - Ultimate Collection of Dax Characters</title>
 
     <!-- JSON-LD Schema Markup -->
     <script type="application/ld+json">
@@ -405,22 +403,22 @@
 
           <div class="auth-section" id="authSection">
             <div class="auth-card" id="loginCard">
-              <h3>🔐 Connect with Reddit</h3>
+              <h3>🔐 Connect with Discord</h3>
               <p>
-                To submit a character, please authenticate with your Reddit
+                To submit a character, please authenticate with your Discord
                 account:
               </p>
               <button id="redditLoginBtn" class="btn btn-primary">
                 <img
-                  src="./img/redditHead.webp"
+                  src="./img/discordHead.webp"
                   alt="Reddit"
                   class="reddit-logo-small"
                 />
-                🔒 Secure login with Reddit
+                🔒 Secure login with Discord
               </button>
               <p class="auth-explanation">
-                You'll be redirected to Reddit's secure login page, then brought
-                back here automatically.
+                You'll be redirected to Discord's secure login page, then
+                brought back here automatically.
               </p>
             </div>
 
@@ -429,7 +427,7 @@
                 <h3>👋 Welcome back!</h3>
                 <div class="user-details">
                   <strong id="username"></strong>
-                  <span class="user-karma" id="userKarma"></span>
+                  <!-- <span class="user-karma" id="userKarma"></span> -->
                 </div>
                 <button id="logoutBtn" class="logout-btn">Logout</button>
               </div>
@@ -449,10 +447,10 @@
                     required
                     placeholder="e.g., Superman, Batman, Pikachu"
                   />
-                  <span class="form-help">The exact character name</span>
+                  <!-- <span class="form-help">The exact character name</span> -->
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="additionalInfo">Additional Information</label>
                   <textarea
                     id="additionalInfo"
@@ -462,7 +460,7 @@
                   <span class="form-help"
                     >Optional details, trivia, or discovery context</span
                   >
-                </div>
+                </div> -->
 
                 <div class="form-actions">
                   <button type="submit" class="submit-btn" id="submitBtn">
@@ -501,28 +499,47 @@
 
     <footer class="footer">
       <div class="footer-content">
-        Created with 💜 by
         <a
-          href="/"
+          href="https://makdulac.com/daxduckdex.html"
           target="_blank"
           rel="noopener noreferrer"
           class="footer-creator"
-          >Mak Dulac</a
         >
-        - contact:
+          Originally
+        </a>
+        created by
         <a
           href="https://www.reddit.com/user/Jean_Mak"
           target="_blank"
           rel="noopener noreferrer"
           class="footer-creator"
-          >Jean_Mak</a
         >
+          Mak Dulac
+        </a>
+        <br />
+        <a
+          href="https://github.com/rmhaiderali/daxduckdex"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-creator"
+        >
+          Fork
+        </a>
+        maintained by
+        <a
+          href="https://www.reddit.com/user/rmhaiderali"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-creator"
+        >
+          Haider Ali
+        </a>
       </div>
     </footer>
 
     <script src="js/script-3.0.6.js" defer></script>
 
     <!-- Analytics Privacy-First -->
-    <script src="js/analytics.js" defer></script>
+    <!-- <script src="js/analytics.js" defer></script> -->
   </body>
 </html>

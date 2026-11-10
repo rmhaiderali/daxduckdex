@@ -9,11 +9,26 @@
   "compatibility_date": "2026-10-06",
   "assets": {
     "directory": "./public",
+    "binding": "ASSETS",
   },
   "observability": {
+    "issues": {
+      "enabled": true,
+    },
     "enabled": true,
+    "logs": {
+      "enabled": true,
+    },
   },
   "upload_source_maps": false,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "daxduckdex",
+      "database_id": "0cd7fbba-65ae-4b1e-801f-fec18b9c8c0a",
+      "remote": true,
+    },
+  ],
   /**
    * Smart Placement
    * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

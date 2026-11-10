@@ -1799,7 +1799,7 @@ header {
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  background: linear-gradient(135deg, #ff4500 0%, #ff6b35 100%) !important;
+  background: linear-gradient(135deg, #3c43b0 0%, #5865f2 100%) !important;
   color: white !important;
   border: none !important;
   border-radius: 25px !important;
@@ -1811,7 +1811,7 @@ header {
   text-decoration: none !important;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.2) !important;
+  box-shadow: 0 4px 15px rgba(60, 67, 176, 0.4) !important;
   border: 2px solid rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(10px);
   min-width: 260px !important;
@@ -1839,9 +1839,9 @@ header {
 .reddit-login-btn:hover,
 #redditLoginBtn:hover,
 .btn.btn-primary:hover {
-  background: linear-gradient(135deg, #e03d00 0%, #ff4500 100%) !important;
+  background: linear-gradient(135deg, #5865f2 0%, #3c43b0 100%) !important;
   transform: translateY(-3px) !important;
-  box-shadow: 0 8px 25px rgba(255, 69, 0, 0.3) !important;
+  box-shadow: 0 8px 25px rgba(60, 67, 176, 0.5) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
@@ -1855,7 +1855,11 @@ header {
 #redditLoginBtn:active,
 .btn.btn-primary:active {
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4) !important;
+  box-shadow: 0 4px 15px rgba(60, 67, 176, 0.6) !important;
+}
+
+#redditLoginBtn .reddit-logo-small {
+  height: 18.33px !important;
 }
 
 .reddit-logo-small {

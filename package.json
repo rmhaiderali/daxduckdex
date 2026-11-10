@@ -11,5 +11,11 @@
   },
   "prettier": {
     "semi": false
+  },
+  "dependencies": {
+    "cookie": "^2.0.2",
+    "dotenv": "^18.0.10",
+    "jsonwebtoken": "^9.0.3",
+    "node-html-parser": "^9.0.7"
   }
 }
