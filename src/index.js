@@ -57,7 +57,9 @@ export default {
         ["/submit/character", "/auth/user"].includes(url.pathname)
       ) {
         try {
-          const decoded = jwt.verify(cookies.token, env.JWT_SECRET)
+          const decoded = jwt.verify(cookies.token, env.JWT_SECRET, {
+            algorithms: ["HS256"],
+          })
           const userId = decoded.id
 
           const result = await env.DB.prepare(
@@ -108,6 +110,12 @@ export default {
         if (!characterName)
           return Response.json(
             { error: "Character name is required" },
+            { status: 400 },
+          )
+
+        if (characterName.length > 50)
+          return Response.json(
+            { error: "Character name too long" },
             { status: 400 },
           )
 
@@ -162,23 +170,40 @@ export default {
       if (url.pathname === "/auth/discord") {
         const client_id = env.DISCORD_CLIENT_ID
         const redirect_uri = env.BASE_URL + "/auth/callback"
+        const state = crypto.randomUUID()
 
         const authUrl = new URL("https://discord.com/oauth2/authorize")
         authUrl.searchParams.set("scope", "identify")
         authUrl.searchParams.set("response_type", "code")
         authUrl.searchParams.set("client_id", client_id)
         authUrl.searchParams.set("redirect_uri", redirect_uri)
+        authUrl.searchParams.set("state", state)
 
-        return new Response(null, {
-          status: 302,
-          headers: { Location: authUrl.toString() },
+        const setOauthStateCookie = stringifySetCookie({
+          name: "oauth_state",
+          value: state,
+          path: "/",
+          maxAge: 600,
+          secure: true,
+          httpOnly: true,
+          sameSite: "Lax",
         })
+
+        const headers = new Headers()
+        headers.set("Location", authUrl.toString())
+        headers.append("Set-Cookie", setOauthStateCookie)
+
+        return new Response(null, { status: 302, headers })
       }
 
       if (url.pathname === "/auth/callback") {
-        const { code } = params
+        const { code, state } = params
 
-        if (!code) return Response.json(null, { status: 400 })
+        if (!code || !state)
+          return Response.json({ error: "Missing parameters" }, { status: 400 })
+
+        if (state !== cookies.oauth_state)
+          return Response.json({ error: "Invalid state" }, { status: 400 })
 
         const client_id = env.DISCORD_CLIENT_ID
         const client_secret = env.DISCORD_CLIENT_SECRET
@@ -199,7 +224,7 @@ export default {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
         })
 
-        if (!tokenRes.ok) return Response(null, { status: 500 })
+        if (!tokenRes.ok) return new Response(null, { status: 500 })
 
         const { access_token } = await tokenRes.json()
 
@@ -221,9 +246,12 @@ export default {
           provider: "discord",
         })
 
-        const token = jwt.sign({ id }, env.JWT_SECRET, { expiresIn: "1d" })
+        const token = jwt.sign({ id }, env.JWT_SECRET, {
+          expiresIn: "1d",
+          algorithm: "HS256",
+        })
 
-        const cookie = stringifySetCookie({
+        const setTokenCookie = stringifySetCookie({
           path: "/",
           name: "token",
           value: token,
@@ -233,19 +261,39 @@ export default {
           maxAge: 60 * 60 * 24,
         })
 
+        const clearOauthStateCookie = stringifySetCookie({
+          name: "oauth_state",
+          value: "",
+          path: "/",
+          maxAge: 0,
+          secure: true,
+          httpOnly: true,
+          sameSite: "Lax",
+        })
+
         const headers = new Headers()
-        headers.set("Set-Cookie", cookie)
         headers.set("Location", "/?returnTo=submit")
+        headers.append("Set-Cookie", setTokenCookie)
+        headers.append("Set-Cookie", clearOauthStateCookie)
 
         return Response.json(null, { headers, status: 302 })
       }
 
       if (url.pathname === "/auth/logout") {
-        const expiredCookies = Object.keys(cookies).map((name) => {
-          return name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
-        })
+        const headers = new Headers()
 
-        const headers = { "Set-Cookie": expiredCookies }
+        for (const name of Object.keys(cookies)) {
+          const clearCookie = stringifySetCookie({
+            name,
+            value: "",
+            path: "/",
+            maxAge: 0,
+            secure: true,
+            httpOnly: true,
+            sameSite: "Strict",
+          })
+          headers.append("Set-Cookie", clearCookie)
+        }
 
         return new Response(null, { headers, status: 200 })
       }
