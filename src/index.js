@@ -17,12 +17,12 @@ async function getImageLinkFromCharacterName(characterName) {
   )
 
   if (!response.ok) {
-    console.error(response.statusText)
+    console.log(response.statusText)
     return null
   }
 
   if (!response.headers.get("content-type")?.includes("text/html")) {
-    console.error("URL did not return HTML content")
+    console.log("URL did not return HTML content")
     return null
   }
 
@@ -35,7 +35,7 @@ async function getImageLinkFromCharacterName(characterName) {
       ?.getAttribute("data-dynamic-logo") || null
 
   if (!logo) {
-    console.error("No logo found")
+    console.log("No logo found")
     return null
   }
 
