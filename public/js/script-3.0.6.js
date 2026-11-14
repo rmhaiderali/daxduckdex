@@ -3,6 +3,13 @@ const API_BASE = ""
 
 class DaxDuckDex {
   constructor() {
+    const { searchParams } = new URL(location.href)
+    const searchParamsKeys = searchParams.keys()
+
+    const hasShowAllAtOnce = searchParamsKeys.some((key) =>
+      key.match(/^showAllAtOnce$/i),
+    )
+
     this.version = "3.0.6"
     this.allCharacters = []
     this.filteredCharacters = []
@@ -12,7 +19,7 @@ class DaxDuckDex {
     this.scrollTimeout = null
     this.scrollHandler = null
     this.observer = null
-    this.pageSize = 50
+    this.pageSize = hasShowAllAtOnce ? Infinity : 50
     this.currentPage = 1
     this.allArchives = []
     this.filteredArchives = []
