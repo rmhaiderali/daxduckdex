@@ -8,7 +8,24 @@ import createKvsTableSql from "./sql/create-kvs-table.sql"
 import createUsersTableSql from "./sql/create-users-table.sql"
 import createCharactersTableSql from "./sql/create-characters-table.sql"
 
+const characterCorrections = {
+  // Broken Otherwise
+  "Ant-Man": "Ant Man",
+  "Salvador Dalí": "Salvador Dali",
+  "D.C. United": "DC United",
+  "St. Louis CITY SC": "St Louis CITY SC",
+  "R2-D2": "R2D2",
+  "C-3PO": "C3PO",
+  "St. Patrick's Day": "St Patrick's Day",
+  // Remove Diacritics
+  "CD Leganés": "CD Leganes",
+  "Vuelta a España": "Vuelta a Espana",
+  // Remove Extra Spaces
+  "Peppa  Pig": "Peppa Pig",
+}
+
 for (const character of characters) {
+  character.name = characterCorrections[character.name] || character.name
   character.discoverer_id ??= userids[character.discoverer]
   character.discoverer_provider ??= "reddit"
 }
