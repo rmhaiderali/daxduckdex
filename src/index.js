@@ -9,6 +9,10 @@ import insertCharsAndDeleteCachedChars from "./utils/insert-chars-and-delete-cac
 import insertKvSql from "./sql/insert-kv.sql"
 import selectKvSql from "./sql/select-kv.sql"
 
+function removeAccents(str) {
+  return str?.normalize?.("NFD").replace(/[\u0300-\u036f]/g, "")
+}
+
 async function getImageLinkFromCharacterName(characterName) {
   console.log("Finding image link for character: " + characterName)
 
@@ -105,7 +109,9 @@ export default {
 
         const json = await request.json()
 
-        const characterName = json.characterName?.trim?.()
+        const characterName = removeAccents(
+          json.characterName?.trim?.().replace(/\s+/g, " "),
+        )
 
         if (!characterName)
           return Response.json(
@@ -119,6 +125,21 @@ export default {
             { status: 400 },
           )
 
+        const { found } = await env.DB.prepare(
+          "SELECT EXISTS(SELECT 1 FROM characters WHERE name = ? COLLATE NOCASE) AS found",
+        )
+          .bind(characterName)
+          .first()
+
+        const characterExistsMsg = "Character already exists with name: "
+
+        if (found) {
+          return Response.json(
+            { error: characterExistsMsg + characterName },
+            { status: 409 },
+          )
+        }
+
         const imageLink = await getImageLinkFromCharacterName(characterName)
 
         if (!imageLink)
@@ -129,17 +150,15 @@ export default {
 
         console.log("Character found: " + imageLink)
 
-        const result = await env.DB.prepare(
+        const sameUrlCharacter = await env.DB.prepare(
           "SELECT name FROM characters WHERE url = ?",
         )
           .bind(imageLink)
           .first()
 
-        const name = result?.name
-
-        if (name)
+        if (sameUrlCharacter?.name)
           return Response.json(
-            { error: "Character already exists with name: " + name },
+            { error: characterExistsMsg + sameUrlCharacter.name },
             { status: 409 },
           )
 
