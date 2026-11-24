@@ -874,7 +874,7 @@ class DaxDuckDex {
     const total = this.allCharacters.length
 
     // Update page title
-    document.title = `DaxDuckDex - Collection of ${total} Dax Characters | Mak Dulac`
+    document.title = `DaxDuckDex - Collection of ${total} Dax Characters`
 
     const metaDescription = document.querySelector('meta[name="description"]')
     if (metaDescription) {
