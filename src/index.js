@@ -13,6 +13,13 @@ function removeAccents(str) {
   return str?.normalize?.("NFD").replace(/[\u0300-\u036f]/g, "")
 }
 
+class HttpError extends Error {
+  constructor(message, status) {
+    super(message)
+    this.status = status
+  }
+}
+
 async function getImageLinkFromCharacterName(characterName) {
   console.log("Finding image link for character: " + characterName)
 
@@ -21,26 +28,30 @@ async function getImageLinkFromCharacterName(characterName) {
   )
 
   if (!response.ok) {
-    console.log(response.statusText)
-    return null
+    console.log(response.status + " " + response.statusText)
+    return new HttpError("Failed to fetch DuckDuckGo Page", 502)
   }
 
   if (!response.headers.get("content-type")?.includes("text/html")) {
     console.log("URL did not return HTML content")
-    return null
+    return new HttpError("Failed to fetch DuckDuckGo Page", 502)
   }
 
   const html = await response.text()
   const document = htmlParse(html)
 
-  const logo =
-    document
-      .querySelector(".header__logo")
-      ?.getAttribute("data-dynamic-logo") || null
+  const headerLogo = document.querySelector(".header__logo")
+
+  if (!headerLogo) {
+    console.log("No header logo element found")
+    return new HttpError("Failed to fetch DuckDuckGo Page", 502)
+  }
+
+  const logo = headerLogo.getAttribute("data-dynamic-logo") || null
 
   if (!logo) {
     console.log("No logo found")
-    return null
+    return new HttpError("No character found for: " + characterName, 404)
   }
 
   return "https://duckduckgo.com" + logo
@@ -140,13 +151,14 @@ export default {
           )
         }
 
-        const imageLink = await getImageLinkFromCharacterName(characterName)
+        const result = await getImageLinkFromCharacterName(characterName)
 
-        if (!imageLink)
-          return Response.json(
-            { error: "Character not found" },
-            { status: 404 },
-          )
+        if (result instanceof HttpError) {
+          const { message, status } = result
+          return Response.json({ error: message }, { status })
+        }
+
+        const imageLink = result
 
         console.log("Character found: " + imageLink)
 
